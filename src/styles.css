@@ -1,0 +1,118 @@
+:root {
+  font-family: 'Pretendard', 'Apple SD Gothic Neo', 'Noto Sans KR', sans-serif;
+  line-height: 1.55;
+  font-size: 18px;
+  color: #3b312f;
+  background: #f8f4ef;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+}
+
+.app {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+}
+
+.card {
+  width: min(100%, 680px);
+  background: #fffefc;
+  border-radius: 20px;
+  border: 2px solid #f0dfd1;
+  padding: 20px;
+  box-shadow: 0 6px 20px rgba(79, 58, 46, 0.08);
+}
+
+h1 {
+  margin-top: 0;
+  font-size: 1.6rem;
+  margin-bottom: 16px;
+}
+
+.card-body {
+  display: grid;
+  gap: 12px;
+}
+
+textarea {
+  width: 100%;
+  padding: 14px;
+  border-radius: 12px;
+  border: 2px solid #e7d7cb;
+  font-size: 1rem;
+}
+
+button {
+  border: none;
+  background: #cc7b4a;
+  color: white;
+  border-radius: 12px;
+  padding: 14px 18px;
+  font-size: 1rem;
+  font-weight: 700;
+}
+
+button.sub {
+  background: #9c8b82;
+}
+
+.card-footer {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+  gap: 10px;
+}
+
+.bubble.ai {
+  background: #fff2e5;
+  border-radius: 14px;
+  padding: 14px;
+  white-space: pre-line;
+}
+
+.summary-list,
+.archive-list {
+  padding-left: 20px;
+  margin: 0;
+  display: grid;
+  gap: 10px;
+}
+
+.archive-list li {
+  background: #fff7ef;
+  border: 1px solid #f2decb;
+  border-radius: 12px;
+  padding: 12px;
+  list-style: none;
+}
+
+.hint {
+  margin: 0;
+  color: #765f54;
+}
+
+@media (max-width: 480px) {
+  :root {
+    font-size: 19px;
+  }
+
+  .card {
+    padding: 16px;
+  }
+
+  button {
+    width: 100%;
+  }
+
+  .card-footer {
+    flex-direction: column;
+  }
+}
