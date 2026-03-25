@@ -1,13 +1,27 @@
 import { useState } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { useNavigate, useParams, useSearchParams } from "react-router-dom";
 import { getLessonById } from "../services/coachEngine";
 
 export default function ProblemInputPage() {
   const navigate = useNavigate();
   const { lessonId } = useParams();
+  const [searchParams] = useSearchParams();
+  const selectedCategory = searchParams.get("category") || "general";
+
+  console.log("[ProblemInputPage] lessonId =", lessonId);
+  console.log("[ProblemInputPage] searchParams category =", selectedCategory);
+  console.log("[ProblemInputPage] full search =", window.location.search);
 
   const lesson = getLessonById(Number(lessonId));
   const [problem, setProblem] = useState("");
+
+  const CATEGORY_LABEL = {
+  general: "전체",
+  gratitude: "감사",
+  emotion: "감정",
+  relationship: "관계",
+  action: "실행",
+};
 
   if (!lesson) {
     return (
@@ -23,16 +37,30 @@ export default function ProblemInputPage() {
   }
 
   const handleStart = () => {
-    if (!problem.trim()) return;
-    navigate(`/coach/${lesson.id}`, {
-      state: { problem }
-    });
-  };
+  if (!problem.trim()) return;
+
+  
+
+  navigate(
+  `/coach?lesson=${lessonId}&category=${encodeURIComponent(selectedCategory)}`,
+  {
+    state: {
+      lessonId,
+      selectedCategory,
+      selectedLesson: lesson.title,
+      issue: problem,
+      problemText: problem,
+    },
+  }
+);
+};
 
   return (
     <div className="app-container">
       <div className="page">
         <h1 className="title">{lesson.title}</h1>
+
+        <p>질문 카테고리: {CATEGORY_LABEL[selectedCategory]}</p>
 
         <div className="text">현재 다루고 싶은 문제를 입력하세요.</div>
 

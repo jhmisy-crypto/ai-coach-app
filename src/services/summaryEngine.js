@@ -4,6 +4,20 @@
  * summaryType: string
  */
 
+export function buildSummaryFromSessionQuestions(sessionQuestions = []) {
+  const answered = (sessionQuestions || []).filter(
+    (item) => String(item.answer || "").trim() !== ""
+  );
+
+  if (!answered.length) return "";
+
+  return answered
+    .map((item, index) => {
+      return `${index + 1}. ${String(item.answer).trim()}`;
+    })
+    .join(" ");
+}
+
 export function generateSummary(answers = [], summaryType = "") {
   const cleaned = answers.filter((a) => a && a.trim() !== "");
 
